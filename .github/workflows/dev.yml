@@ -1,0 +1,24 @@
+name: Build and deploy packege
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@dev
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: Teste
+      run: dotnet test
